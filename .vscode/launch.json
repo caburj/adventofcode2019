@@ -10,7 +10,7 @@
       "name": "Launch Program",
       "console": "externalTerminal",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/day05/index.js",
+      "program": "${file}",
       "smartStep": true
     }
   ]
