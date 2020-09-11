@@ -14,7 +14,7 @@ console.log('fuel requirement 1:', utils.sum(fuels1));
 
 function fuel2(mass) {
   const initReq = fuel1(mass);
-  if (mass <= 2 || initReq <= 0) return 0;
+  if (initReq <= 0) return 0;
   return initReq + fuel2(initReq);
 }
 const fuels2 = masses.map(fuel2);
