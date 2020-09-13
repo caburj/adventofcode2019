@@ -1,5 +1,4 @@
 const fs = require('fs');
-const readline = require('readline');
 
 function sum(arr) {
   return arr.reduce((acc, a) => acc + a);
@@ -26,7 +25,7 @@ function getIntCode(path) {
  * @param {number} a
  * @param {number} b
  */
-function mod(a, b) {
+function divmod(a, b) {
   return [~~(a / b), a % b];
 }
 
@@ -43,4 +42,31 @@ function getUserInput(msg) {
   });
 }
 
-module.exports = { sum, min, read, getIntCode, mod, getUserInput };
+/**
+ * Source: https://stackoverflow.com/questions/9960908/permutations-in-javascript
+ */
+function* permute(permutation) {
+  var length = permutation.length,
+    c = Array(length).fill(0),
+    i = 1,
+    k,
+    p;
+
+  yield permutation.slice();
+  while (i < length) {
+    if (c[i] < i) {
+      k = i % 2 && c[i];
+      p = permutation[i];
+      permutation[i] = permutation[k];
+      permutation[k] = p;
+      ++c[i];
+      i = 1;
+      yield permutation.slice();
+    } else {
+      c[i] = 0;
+      ++i;
+    }
+  }
+}
+
+module.exports = { sum, min, read, getIntCode, divmod, getUserInput, permute };

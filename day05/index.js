@@ -1,4 +1,4 @@
-const { getIntCode, mod, getUserInput } = require('../utils');
+const { getIntCode, divmod, getUserInput } = require('../utils');
 const intCode = getIntCode('./day05/input.txt');
 
 /// Day 5 sample input
@@ -79,10 +79,10 @@ function equals(code, args, modes) {
 }
 
 function parse(instruction) {
-  const [quoC, op] = mod(instruction, 100);
-  const [quoB, C] = mod(quoC, 10);
-  const [quoA, B] = mod(quoB, 10);
-  const [_, A] = mod(quoA, 10);
+  const [quoC, op] = divmod(instruction, 100);
+  const [quoB, C] = divmod(quoC, 10);
+  const [quoA, B] = divmod(quoB, 10);
+  const [_, A] = divmod(quoA, 10);
   return [op, C, B, A];
 }
 
