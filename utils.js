@@ -4,8 +4,12 @@ function sum(arr) {
   return arr.reduce((acc, a) => acc + a);
 }
 
-function min(arr) {
-  return arr.reduce((acc, a) => (acc < a ? acc : a));
+function count(arr, item) {
+  return arr.filter((i) => i === item).length;
+}
+
+function min(arr, key = (x) => x) {
+  return arr.reduce((acc, a) => (key(acc) < key(a) ? acc : a));
 }
 
 function read(path) {
@@ -69,4 +73,13 @@ function* permute(permutation) {
   }
 }
 
-module.exports = { sum, min, read, getIntCode, divmod, getUserInput, permute };
+module.exports = {
+  sum,
+  min,
+  read,
+  getIntCode,
+  divmod,
+  getUserInput,
+  permute,
+  count,
+};
