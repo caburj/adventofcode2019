@@ -18,10 +18,7 @@ function read(path) {
 
 function getIntCode(path) {
   const data = read(path);
-  return data
-    .trim()
-    .split(',')
-    .map((val) => parseInt(val.trim()));
+  return parseIntCode(data.trim());
 }
 
 /**
@@ -73,6 +70,10 @@ function* permute(permutation) {
   }
 }
 
+function parseIntCode(codeStr) {
+  return codeStr.split(',').map((val) => parseInt(val.trim()));
+}
+
 module.exports = {
   sum,
   min,
@@ -82,4 +83,5 @@ module.exports = {
   getUserInput,
   permute,
   count,
+  parseIntCode,
 };
