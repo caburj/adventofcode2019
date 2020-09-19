@@ -74,6 +74,38 @@ function parseIntCode(codeStr) {
   return codeStr.split(',').map((val) => parseInt(val.trim()));
 }
 
+function mergesort(items, key = (a) => a, comparator = (a, b) => a < b) {
+  sort(items, [...items], 0, items.length - 1);
+
+  function merge(items, aux, firstLeft, firstRight, last) {
+    for (let x = firstLeft; x <= last; x++) {
+      aux[x] = items[x];
+    }
+    let [i, j] = [firstLeft, firstRight];
+    for (let k = firstLeft; k <= last; k++) {
+      if (i >= firstRight) {
+        items[k] = aux[j++];
+      } else if (j > last) {
+        items[k] = aux[i++];
+      } else if (comparator(key(aux[j]), key(aux[i]))) {
+        // for stability, we only choose the 'right' item
+        // when it is smaller than the 'left' item.
+        items[k] = aux[j++];
+      } else {
+        items[k] = aux[i++];
+      }
+    }
+  }
+
+  function sort(items, aux, first, last) {
+    if (last <= first) return;
+    const startRight = first + Math.trunc((last - first) / 2) + 1;
+    sort(items, aux, first, startRight - 1);
+    sort(items, aux, startRight, last);
+    merge(items, aux, first, startRight, last);
+  }
+}
+
 module.exports = {
   sum,
   min,
@@ -84,4 +116,5 @@ module.exports = {
   permute,
   count,
   parseIntCode,
+  mergesort,
 };
