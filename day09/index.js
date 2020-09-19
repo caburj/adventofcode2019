@@ -173,7 +173,7 @@ class Program {
     }
   }
   run(pauseAt = [3]) {
-    result = challengeProgram.proceed();
+    let result = challengeProgram.proceed();
     while (result.endOp !== 99) {
       if (result.endOp === 3) {
         result = challengeProgram.proceed({ val: 2 });
@@ -210,4 +210,4 @@ class Program {
 RELATIVE_BASE = 0;
 const intCode = getIntCode('./day09/input.txt');
 const challengeProgram = new Program(intCode);
-
+challengeProgram.run();
